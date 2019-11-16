@@ -4,8 +4,10 @@ RUN apt-get update && apt-get install -y wget zip
 
 ENV ARCH=arm
 
+RUN wget -nv https://storage.googleapis.com/dart-archive/channels/stable/release/2.6.0/sdk/dartsdk-linux-x64-release.zip \
+	&& unzip dartsdk-linux-x64-release.zip -d /
 RUN wget -nv https://storage.googleapis.com/dart-archive/channels/stable/release/2.6.0/sdk/dartsdk-linux-${ARCH}-release.zip \
-	&& unzip dartsdk-linux-${ARCH}-release.zip -d /
+	&& unzip -o dartsdk-linux-${ARCH}-release.zip -d /
 
 COPY . /src/
 RUN PATH="/dart-sdk/bin:/root/.pub-cache/bin:${PATH}" && \
